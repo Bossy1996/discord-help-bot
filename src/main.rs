@@ -45,7 +45,16 @@ impl EventHandler for Handler {
         println!("{} is connected!", ready.user.name);
     }
 }
+// I don't understand why the following error ocurs when i add the #[tokio::main] to the main function
+/* error: The default runtime flavor is `multi_thread`, but the `rt-multi-thread` feature is disabled.
+  --> src\main.rs:49:1
+   |
+49 | #[tokio::main]
+   | ^^^^^^^^^^^^^^
+   |
+   = note: this error originates in an attribute macro (in Nightly builds, run with -Z macro-backtrace for more info)
 
+ */
 #[tokio::main]
 async fn main() {
     let token = env::var("DISCORD TOKEN").expect("Expected a token in the environment");
