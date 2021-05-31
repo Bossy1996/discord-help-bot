@@ -56,8 +56,8 @@ impl EventHandler for Handler {
    = note: this error originates in an attribute macro (in Nightly builds, run with -Z macro-backtrace for more info)
 
  */
-
-async fn connection() {
+#[tokio::main]
+async fn main() {
     let token = env::var("DISCORD TOKEN").expect("Expected a token in the environment");
 
     let mut client = Client::new(&token).event_handler(Handler).await.expect("Err creating client");
@@ -65,8 +65,4 @@ async fn connection() {
     if let Err(why) = client.start().await {
         println!("Client error: {:?}", why);
     }
-}
-
-fn main() {
-    connection();
 }
