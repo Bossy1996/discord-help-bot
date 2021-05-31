@@ -45,7 +45,8 @@ impl EventHandler for Handler {
         println!("{} is connected!", ready.user.name);
     }
 }
-// I don't understand why the following error ocurs when i add the #[tokio::main] to the main function
+// I don't understand why the following error ocurs when i add the #[tokio::main] to the main function. 
+// Probably i have a solution for this but i don' know why it has compiled.
 /* error: The default runtime flavor is `multi_thread`, but the `rt-multi-thread` feature is disabled.
   --> src\main.rs:49:1
    |
@@ -55,8 +56,8 @@ impl EventHandler for Handler {
    = note: this error originates in an attribute macro (in Nightly builds, run with -Z macro-backtrace for more info)
 
  */
-#[tokio::main]
-async fn main() {
+
+async fn connection() {
     let token = env::var("DISCORD TOKEN").expect("Expected a token in the environment");
 
     let mut client = Client::new(&token).event_handler(Handler).await.expect("Err creating client");
@@ -64,4 +65,8 @@ async fn main() {
     if let Err(why) = client.start().await {
         println!("Client error: {:?}", why);
     }
+}
+
+fn main() {
+    connection();
 }
