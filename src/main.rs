@@ -15,7 +15,7 @@ Hello there, Human!
 You have summoned me. Let's see about getting you what you need.
 
 ? Need technical help?
-==> Post is the <#CHANNEL_ID> channel and other humans will assit you.
+==> Post is the <#848917295111077928> channel and other humans will assit you.
 
 ? Looking for the Code of Conduct?
 ==> Here it is: <Place_Holder>
@@ -50,7 +50,7 @@ impl EventHandler for Handler {
 async fn main() {
     let token = env::var("DISCORD TOKEN").expect("Expected a token in the environment");
 
-    let mut client = Client::new(&token).event_handler(Handler).await.expect("Err creating client");
+    let mut client = Client::builder(&token).event_handler(Handler).await.expect("Err creating client");
 
     if let Err(why) = client.start().await {
         println!("Client error: {:?}", why);
