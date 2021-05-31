@@ -48,7 +48,7 @@ impl EventHandler for Handler {
 
 #[tokio::main]
 async fn main() {
-    let token = env::var("DISCORD TOKEN").expect("Expected a token in the environment");
+    let token = env::var("DISCORD_TOKEN").expect("Expected a token in the environment");
 
     let mut client = Client::builder(&token).event_handler(Handler).await.expect("Err creating client");
 
